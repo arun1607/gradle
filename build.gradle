@@ -1,0 +1,39 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    nexus()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+def patternToFind = /src=['"](\S+)['"]/
+task hello  << {
+//File configFile = file('src/config.xml')
+//FileTree tree = fileTree('src').include('**/*.html')
+//tree.each{File file ->
+//println file
+
+//println matcher.count
+//println matcher[0]
+
+    File file = file('src/main/webapp/logout.html')
+    def text = file.text
+
+//def matcher = (text =~ /$patternToFind/)
+//matcher.replaceAll("Tanya");
+    replacePatternInFile(file){
+        it.replaceAll(patternToFind, "src='www.google.com/\$1'")
+    }
+
+    println file.getText()
+}
+
+def replacePatternInFile(file, Closure replaceText) {
+    file.write(replaceText(file.text))
+}
+
