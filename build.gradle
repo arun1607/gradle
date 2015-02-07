@@ -24,7 +24,7 @@ task hello << {
 
         replacePatternInFile(file) {
             it.replaceAll(patternToFind, { all, parentDir, filePath ->
-                "src='www.google.com${filePath}'"
+                "src='${cdn_path}${filePath}'"
             })
         }
     }
