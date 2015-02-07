@@ -4,7 +4,13 @@ sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
-    nexus()
+    maven {
+        credentials {
+            username 'deployment'
+            password 'fidelis@dev'
+        }
+        url "http://repo.fideliseducation.com:8080/nexus/content/groups/public/"
+    }
 }
 
 dependencies {
@@ -21,7 +27,7 @@ task hello  << {
 //println matcher.count
 //println matcher[0]
 
-    File file = file('src/main/webapp/logout.html')
+    File file = file('src/main/webapp/home.html')
     def text = file.text
 
 //def matcher = (text =~ /$patternToFind/)
