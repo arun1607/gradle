@@ -1,20 +1,22 @@
 apply plugin: 'java'
+apply plugin : 'maven'
+apply plugin : 'idea'
 
 sourceCompatibility = 1.7
 version = '1.0'
-
+group = 'com.learning'
 repositories {
     maven {
-        credentials {
-            username 'deployment'
-            password 'fidelis@dev'
-        }
         url "http://repo.fideliseducation.com:8080/nexus/content/groups/public/"
     }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'io.undertow:undertow-core:1.1.1.Final'
+    compile 'org.springframework:spring-jms:4.1.0.RELEASE'
+    compile 'io.undertow:undertow-servlet:1.1.1.Final'
+    compile 'org.mockito:mockito-all:1.9.5'
 }
 
 task hello << {
